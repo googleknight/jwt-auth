@@ -1,2 +1,2 @@
-# express-ts-template
-A basic boilerplate code for kickstarting an express server
+# jwt-auth
+A basic authentication & authorization using JWT.

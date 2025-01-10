@@ -1,11 +1,8 @@
 {
-  "name": "express-ts-template",
+  "name": "jwt-auth",
   "version": "1.0.0",
-  "description": "A basic boilerplate code for kickstart an express server",
+  "description": "Basic authentication & authorization using JWT",
   "main": "src/index.ts",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
@@ -26,18 +23,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/googleknight/express-ts-template.git"
+    "url": "git+https://github.com/googleknight/jwt-auth.git"
   },
   "keywords": [
-    "template",
-    "express"
+    "jwt",
+    "express",
+    "auth"
   ],
   "author": "Shubham Mathur",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/googleknight/express-ts-template/issues"
+    "url": "https://github.com/googleknight/jwt-auth/issues"
   },
-  "homepage": "https://github.com/googleknight/express-ts-template#readme",
+  "homepage": "https://github.com/googleknight/jwt-auth#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
