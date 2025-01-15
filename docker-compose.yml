@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      JWT_SECRET: '816bff3e7db5233c6b3fcc3a903c1ccf' # use variable here in production and set that variable in a vault
+      JWT_ISSUER: 'localhost' # use variable here in production and set that variable in a vault
+      JWT_AUDIENCE: 'testing' # use variable here in production and set that variable in a vault
+      PORT: 3000
+      API_PREFIX: 'api'
