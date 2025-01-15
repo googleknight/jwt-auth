@@ -39,7 +39,7 @@ export const checkPassword = (email: string, password: string): User => {
 export const checkJWT = (token: string): JwtPayload => {
   if (!token) throw new BadRequestError('Token not found');
   try {
-    return verify(token?.split(' ')[1], config.jwt.secret!, {
+    return verify(token.split(' ')[1], config.jwt.secret!, {
       complete: true,
       audience: config.jwt.audience,
       issuer: config.jwt.issuer,
