@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { checkJWT } from '../../src/services';
 import { CustomRequest, Roles } from '../../src/types';
 import { ForbiddenError, NotFoundError } from '../../src/errors';
@@ -10,8 +10,14 @@ jest.mock('../../src/errors');
 describe('Middleware: authenticate', () => {
   const req = { headers: { authorization: 'testToken' } } as Request;
   const res = {} as Response;
-  const next = jest.fn() as NextFunction;
+  let next: jest.Mock;
 
+  beforeEach(() => {
+    next = jest.fn(); // Create a new Jest mock for next in each test
+  });
+  afterEach(() => {
+    jest.clearAllMocks(); // Clear mocks after each test
+  });
   it('should attach JWT payload to request object when token is valid', () => {
     (checkJWT as jest.Mock).mockReturnValue({ payload: 'testPayload' });
     authenticate(req, res, next);
@@ -32,6 +38,16 @@ describe('Middleware: authenticate', () => {
     const req = { headers: {} } as Request;
     authenticate(req, res, next);
     expect(next).toHaveBeenCalled();
+  });
+  it('should handle spoofed authorization headers', () => {
+    const req = {
+      headers: {
+        authorization: 'Bearer \n\r token', // Injection attempt
+      },
+    } as Request;
+    authenticate(req, res, next);
+    expect((req as CustomRequest).token).toBeUndefined();
+    expect(next).toHaveBeenCalledWith(new Error('Invalid token'));
   });
   it('should call next without setting token if authorization header is invalid format', () => {
     const req = { headers: { authorization: 'InvalidToken' } } as Request; // No "Bearer"
