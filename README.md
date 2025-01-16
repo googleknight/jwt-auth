@@ -1,5 +1,8 @@
 # jwt-auth
 
+![Build Status](https://github.com/googleknight/jwt-auth/actions/workflows/node.js.yml/badge.svg)
+[![codecov](https://codecov.io/github/googleknight/jwt-auth/graph/badge.svg?token=O6OFB0GS3U)](https://codecov.io/github/googleknight/jwt-auth)
+
 A basic authentication & authorization example using JWT (JSON Web Tokens).
 
 ## Description
